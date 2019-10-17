@@ -12,7 +12,7 @@ class ImageTest extends TestCase
     /** @test */
     function it_can_draw_an_image()
     {
-        $image = ImageJpeg::make(assets_path('img/decorator.jpeg'));
+        $image = new ImageJpeg(assets_path('img/decorator.jpeg'));
         $this->assertImageEquals('basic-image.jpeg', $image);
     }
 

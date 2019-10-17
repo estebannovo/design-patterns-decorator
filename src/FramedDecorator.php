@@ -2,24 +2,20 @@
 
 namespace Enovo;
 
-class FramedDecorator implements Image
+class FramedDecorator extends ImageDecorator
 {
     protected $thickness;
-    /**
-     * @var FramedDecorator|GrayscaleDecorator|ImageJpeg|ResizeDecorator
-     */
-    protected $image;
 
     public function __construct(Image $image, $thickness )
     {
-        $this->image = $image;
+        parent::__construct($image);
 
         $this->thickness = $thickness;
     }
 
     public function draw()
     {
-        return $this->addBorder($this->image->draw());
+        return $this->addBorder(parent::draw());
     }
 
     protected function addBorder($img)

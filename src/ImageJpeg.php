@@ -11,28 +11,7 @@ class ImageJpeg implements Image
         $this->path = $path;
     }
 
-    public static function make($path, $width =  null, $height = null, $grayscale = false, $framed = false)
-    {
-        $image = new static($path);
-
-        if($width && $height){
-            $image = new ResizeDecorator($image, $width, $height);
-        }
-
-        if($grayscale){
-            $image = new GrayscaleDecorator($image);
-        }
-
-        if($framed){
-            $image = new FramedDecorator($image, $framed);
-        }
-
-        return $image;
-    }
-
     public function draw(){
-        $img =  imagecreatefromjpeg($this->path);
-
-        return $img;
+        return imagecreatefromjpeg($this->path);
     }
 }
