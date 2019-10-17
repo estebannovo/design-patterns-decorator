@@ -16,40 +16,12 @@ class Image
      */
     private $framed;
 
-    public function __construct($path)
+    public function __construct($path,$width =  null, $height = null, $grayscale = false, $framed = false)
     {
         $this->path = $path;
-    }
-
-    /**
-     * @param null $width
-     */
-    public function setWidth($width)
-    {
         $this->width = $width;
-    }
-
-    /**
-     * @param null $height
-     */
-    public function setHeight($height)
-    {
         $this->height = $height;
-    }
-
-    /**
-     * @param bool $grayscale
-     */
-    public function setGrayscale($grayscale)
-    {
         $this->grayscale = $grayscale;
-    }
-
-    /**
-     * @param bool $framed
-     */
-    public function setFramed($framed)
-    {
         $this->framed = $framed;
     }
 

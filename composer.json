@@ -22,7 +22,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Enovo\\Tests\\": " tests/"
+            "Enovo\\Tests\\": "tests/"
         }
     }
 }
