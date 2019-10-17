@@ -6,7 +6,7 @@ class Image
 {
     protected $path;
 
-    protected function __construct($path)
+    public function __construct($path)
     {
         $this->path = $path;
     }

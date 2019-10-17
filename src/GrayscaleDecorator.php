@@ -2,16 +2,21 @@
 
 namespace Enovo;
 
-class GrayscaleDecorator extends Image
+class GrayscaleDecorator
 {
+    /**
+     * @var FramedDecorator|GrayscaleDecorator|Image|ResizeDecorator
+     */
+    protected $image;
+
     public function __construct($filename)
     {
-        parent::__construct($filename);
+        $this->image =  Image::make($filename);
     }
 
     public function draw()
     {
-        $img =  parent::draw();
+        $img =  $this->image->draw();
 
         imagefilter($img, IMG_FILTER_GRAYSCALE);
 

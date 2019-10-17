@@ -42,7 +42,7 @@ class ImageTest extends TestCase
         $this->assertImageEquals('resized_grayscale_framed-image.jpeg', $image);
     }
 
-    protected function assertImageEquals($filename, Image $image)
+    protected function assertImageEquals($filename, $image)
     {
         if (! file_exists($this->snapshotsPath($filename))){
             imagejpeg($image->draw(), $this->snapshotsPath($filename));
