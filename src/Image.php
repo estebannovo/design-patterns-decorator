@@ -5,42 +5,31 @@ namespace Enovo;
 class Image
 {
     protected $path;
-    private $width;
-    private $height;
-    /**
-     * @var bool
-     */
-    private $grayscale;
-    /**
-     * @var bool
-     */
-    private $framed;
 
-    public function __construct($path,$width =  null, $height = null, $grayscale = false, $framed = false)
+    protected function __construct($path)
     {
         $this->path = $path;
-        $this->width = $width;
-        $this->height = $height;
-        $this->grayscale = $grayscale;
-        $this->framed = $framed;
+    }
+
+    public static function make($path, $width =  null, $height = null, $grayscale = false, $framed = false)
+    {
+        if($width && $height){
+            return new ResizeDecorator($path, $width, $height);
+        }
+
+        if($grayscale){
+            return new GrayscaleDecorator($path, $grayscale);
+        }
+
+        if($framed){
+            return new FramedDecorator($path, $framed);
+        }
+
+        return new static($path);
     }
 
     public function draw(){
         $img =  imagecreatefromjpeg($this->path);
-
-        if($this->width && $this->height){
-            $img = imagescale($img, $this->width, $this->height);
-        }
-
-        if($this->grayscale){
-            imagefilter($img, IMG_FILTER_GRAYSCALE);
-        }
-
-        if($this->framed){
-            for ($i = 0; $i < $this->framed; $i++){
-                imagerectangle($img, $i, $i, imagesx($img) - $i -1, imagesy($img) - $i - 1, imagecolorallocate($img, 255, 0, 0));
-            }
-        }
 
         return $img;
     }

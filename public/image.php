@@ -6,7 +6,7 @@ require_once __DIR__.'/../vendor/autoload.php';
 
 use Enovo\Image;
 
-$image = new Image(assets_path('img/decorator.jpeg'), 1000, 667, true, 2);
+$image = Image::make(assets_path('img/decorator.jpeg'), 500, 333, true, 2);
 
 header('Content-Type: image/jpeg');
 imagejpeg($image->draw());
