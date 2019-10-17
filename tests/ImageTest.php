@@ -1,10 +1,10 @@
 <?php
 
-namespace Enovo\tests;
+namespace Enovo\Tests;
 
 use Enovo\Image;
 
-class ImageTest extends \PHPUnit\Framework\TestCase
+class ImageTest extends TestCase
 {
     /** @test */
     function it_can_draw_an_image()
