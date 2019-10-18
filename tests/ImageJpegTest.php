@@ -6,8 +6,9 @@ use Enovo\FramedDecorator;
 use Enovo\GrayscaleDecorator;
 use Enovo\ImageJpeg;
 use Enovo\ResizeDecorator;
+use Enovo\WatermarkdDecorator;
 
-class ImageTest extends TestCase
+class ImageJpegTest extends TestCase
 {
     /** @test */
     function it_can_draw_an_image()
@@ -55,6 +56,16 @@ class ImageTest extends TestCase
         $this->assertImageEquals('resized_grayscale_framed-image.jpeg', $image);
     }
 
+    /** @test */
+    function it_can_draw_a_watermkark_image()
+    {
+        $image = new ImageJpeg(assets_path('img/decorator.jpeg'));
+        $image = new ResizeDecorator($image, 1500, 999);
+        $image = new WatermarkdDecorator($image, assets_path('img/styde.png'));
+
+        $this->assertImageEquals('watermarked-image.jpeg', $image);
+    }
+
     protected function assertImageEquals($filename, $image)
     {
         if (! file_exists($this->snapshotsPath($filename))){
@@ -68,10 +79,5 @@ class ImageTest extends TestCase
             file_get_contents($this->snapshotsPath($filename)) === file_get_contents(storage_path($filename)),
             "The drawn image does not match the expected image [{$filename}]"
         );
-    }
-
-    protected function snapshotsPath($filename)
-    {
-        return __DIR__.'/snapshots/'.$filename;
     }
 }
